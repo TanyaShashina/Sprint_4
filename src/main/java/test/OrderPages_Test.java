@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import pageObj.MainPage;
 import pageObj.OrderPages;
 
@@ -17,10 +18,11 @@ import static costant.URL_Constant.HOME_P_URL;
 public class OrderPages_Test {
     //создаём драйвера
     public WebDriver Gdriver;
-
+    public WebDriver Mdriver;
     @Before
     public void createDriver(){
         Gdriver = new ChromeDriver();
+        Mdriver = new FirefoxDriver();
 
     }
 
@@ -33,9 +35,8 @@ public class OrderPages_Test {
     @Test
     public void createOrderHB(){
         Gdriver.get(HOME_P_URL);
-
-        MainPage mainP = new MainPage(Gdriver);
-        OrderPages orderP = new OrderPages(Gdriver);
+        MainPage mainP = new MainPage(Mdriver);
+        OrderPages orderP = new OrderPages(Mdriver);
         //открываем форму заказа
         mainP.clickHeaderOrderButton();
         //заполняем форму "Для кого самокат"
@@ -60,6 +61,9 @@ public class OrderPages_Test {
         orderP.waitElements();
         //Заполням коммент для курьера
         orderP.setTxtElement(CUSTOMER_COMMENT,COMMENT_FOR_CUR);
+        orderP.waitElements();
+        //принимаем куки что бы нажать кнопку "Заказать"
+        mainP.clickToObj(ORDER_CONFIRM_COCKIES);
         orderP.waitElements();
         //Нажимаем кнопку Заказать
         mainP.clickToObj(ORDER_PAGEW);
@@ -99,6 +103,9 @@ public class OrderPages_Test {
         orderP.waitElements();
         //Заполням коммент для курьера
         orderP.setTxtElement(CUSTOMER_COMMENT,COMMENT_FOR_CUR);
+        orderP.waitElements();
+        //принимаем куки что бы нажать кнопку "Заказать"
+        mainP.clickToObj(ORDER_CONFIRM_COCKIES);
         orderP.waitElements();
         //Нажимаем кнопку Заказать
         mainP.clickToObj(ORDER_PAGEW);
