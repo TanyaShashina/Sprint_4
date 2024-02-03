@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import pageObj.MainPage;
 import pageObj.OrderPages;
 
@@ -22,6 +23,8 @@ public class OrderPages_Test {
     @Before
     public void createDriver(){
         Gdriver = new ChromeDriver();
+        //FirefoxOptions options = new FirefoxOptions();
+        //options.addArguments("--headless");
         Mdriver = new FirefoxDriver();
 
     }
@@ -34,7 +37,7 @@ public class OrderPages_Test {
     //Заказ через кнопку в шапке страници
     @Test
     public void createOrderHB(){
-        Gdriver.get(HOME_P_URL);
+        Mdriver.get(HOME_P_URL);
         MainPage mainP = new MainPage(Mdriver);
         OrderPages orderP = new OrderPages(Mdriver);
         //открываем форму заказа
@@ -70,7 +73,7 @@ public class OrderPages_Test {
         //Нажимаем кнопку "Да"
         mainP.clickToObj(YES_PAGEW);
         //Ждём заголовка "Заказ оформлен"
-        Assert.assertFalse("Заказ не оформлен, не появилась модалка 'Заказ оформлен'",Gdriver.findElement(YES_PAGEW).isDisplayed());
+        Assert.assertEquals("Заказ не оформлен, не появилась модалка 'Заказ оформлен'", true, Mdriver.findElement(ORDER_CONFIRM).isDisplayed());
 
     }
     //Заказ через кнопку в теле страници
@@ -112,7 +115,7 @@ public class OrderPages_Test {
         //Нажимаем кнопку "Да"
         mainP.clickToObj(YES_PAGEW);
         //Ждём заголовка "Заказ оформлен"
-        Assert.assertFalse("Заказ не оформлен, не появилась модалка 'Заказ оформлен'",Gdriver.findElement(YES_PAGEW).isDisplayed());
+        Assert.assertFalse("Заказ не оформлен, не появилась модалка 'Заказ оформлен'",Gdriver.findElement(ORDER_CONFIRM).isDisplayed());
 
     }
 }

@@ -17,7 +17,7 @@ public class OrderBY_Constants {
     public static final By COMMENT_FOR_CUR = By.cssSelector("div.Order_Form__17u6u > div.Input_InputContainer__3NykH > input");// Поле комментарий
     public static final By ORDER_PAGEW = By.xpath(".//button[text()='Заказать' and @class='Button_Button__ra12g Button_Middle__1CSJM']");//кнопка Заказать на форме "Про аренду"
     public static final By YES_PAGEW = By.cssSelector("div.Order_Modal__YZ-d3 > div.Order_Buttons__1xGrp > button:nth-child(2)");//кнопка Заказать на форме "Про аренду"
-    public static final By ORDER_CONFIRM = By.xpath(".//button[text()='Заказ оформлен' and @class='Order_ModalHeader__3FDaJ']");
+    public static final By ORDER_CONFIRM = By.xpath(".//div[text()='Заказ оформлен' and @class='Order_ModalHeader__3FDaJ']");
     public static final By ORDER_CONFIRM_COCKIES = By.xpath(".//button[text()='да все привыкли' and @class='App_CookieButton__3cvqF']");
 
 
