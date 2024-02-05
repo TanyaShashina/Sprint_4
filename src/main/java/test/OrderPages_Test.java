@@ -18,13 +18,11 @@ import static costant.URL_Constant.HOME_P_URL;
 
 public class OrderPages_Test {
     //создаём драйвера
-    public WebDriver Gdriver;
+    //public WebDriver Gdriver;
     public WebDriver Mdriver;
     @Before
     public void createDriver(){
-        Gdriver = new ChromeDriver();
-        //FirefoxOptions options = new FirefoxOptions();
-        //options.addArguments("--headless");
+        //Gdriver = new ChromeDriver();
         Mdriver = new FirefoxDriver();
 
     }
@@ -32,7 +30,9 @@ public class OrderPages_Test {
     //закрываем браузер после теста
     @After
     public void quitDriver(){
-        Gdriver.quit();
+
+        //Gdriver.quit();
+        Mdriver.quit();
     }
     //Заказ через кнопку в шапке страници
     @Test
@@ -79,9 +79,9 @@ public class OrderPages_Test {
     //Заказ через кнопку в теле страници
     @Test
     public void createOrderBB(){
-        Gdriver.get(HOME_P_URL);
-        MainPage mainP = new MainPage(Gdriver);
-        OrderPages orderP = new OrderPages(Gdriver);
+        Mdriver.get(HOME_P_URL);
+        MainPage mainP = new MainPage(Mdriver);
+        OrderPages orderP = new OrderPages(Mdriver);
         //открываем форму заказа
         mainP.clickBoddyOrderButton();
         //заполняем форму "Для кого самокат"
@@ -115,7 +115,6 @@ public class OrderPages_Test {
         //Нажимаем кнопку "Да"
         mainP.clickToObj(YES_PAGEW);
         //Ждём заголовка "Заказ оформлен"
-        Assert.assertFalse("Заказ не оформлен, не появилась модалка 'Заказ оформлен'",Gdriver.findElement(ORDER_CONFIRM).isDisplayed());
-
+        Assert.assertEquals("Заказ не оформлен, не появилась модалка 'Заказ оформлен'", true, Mdriver.findElement(ORDER_CONFIRM).isDisplayed());
     }
 }
